@@ -4,8 +4,14 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 require('dotenv').config()
 
+const users = require('./routes/api/users')
+
 //middleWare
 app.use(bodyParser.json())
+
+// every time when we go to /api/users/ we got to middleware users
+app.use('/api/users/', users)
+
 
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`
 
