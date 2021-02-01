@@ -57,12 +57,19 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
-userSchema.methods.generateToken = function (){
+userSchema.methods.generateToken = function () {
     let user = this
     const userObj = {_id: user._id.toHexString(), email: user.email}
-    const token = jwt.sign(userObj, process.env.DB_SECRET,{expiresIn: '1d' })
+    const token = jwt.sign(userObj, process.env.DB_SECRET, {expiresIn: '1d'})
     return token
 }
+
+userSchema.methods.comparePassword = async function (pass) {
+    let user = this
+    const match = await bcrypt.compare(pass, user.password)
+    return match
+}
+
 
 userSchema.statics.emailTaken = async function (email) {
     const user = await this.findOne({email})

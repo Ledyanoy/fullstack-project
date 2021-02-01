@@ -5,9 +5,13 @@ const bodyParser = require('body-parser')
 require('dotenv').config()
 
 const users = require('./routes/api/users')
+const { checkToken } = require('./middleware/auth')
+
 
 //middleWare
 app.use(bodyParser.json())
+
+app.use(checkToken)
 
 // every time when we go to /api/users/ we got to middleware users
 app.use('/api/users/', users)
