@@ -11,6 +11,7 @@ const { checkToken } = require('./middleware/auth')
 //middleWare
 app.use(bodyParser.json())
 
+// middleware to check token
 app.use(checkToken)
 
 // every time when we go to /api/users/ we got to middleware users

@@ -1,4 +1,5 @@
 const express = require('express')
+const {checkUserExist} = require("../../middleware/auth");
 let router = express.Router()
 require('dotenv').config()
 
@@ -48,9 +49,10 @@ router.route('/signin').post(async (req, res) => {
     }
 )
 
-router.route('/profile').get(async (req, res) => {
+router.route('/profile').get(checkUserExist, async (req, res) => {
         try {
 
+        res.status(200).send('ok')
 
 
         } catch (error) {
