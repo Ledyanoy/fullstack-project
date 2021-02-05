@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 require('dotenv').config()
 
 const users = require('./routes/api/users')
+const articles = require('./routes/api/articles')
 const { checkToken } = require('./middleware/auth')
 
 
@@ -16,6 +17,7 @@ app.use(checkToken)
 
 // every time when we go to /api/users/ we got to middleware users
 app.use('/api/users/', users)
+app.use('/api/articles/', articles)
 
 
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`

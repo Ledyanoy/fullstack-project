@@ -4,6 +4,7 @@ const {checkUserExist} = require("../../middleware/auth");
 let router = express.Router()
 require('dotenv').config()
 
+//model
 const {User} = require('../../models/user_model')
 
 router.route('/register').post(async (req, res) => {
