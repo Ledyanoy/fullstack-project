@@ -65,5 +65,32 @@ router.route('/admin/:id')
         }
     })
 
+router.route('/get_byid/:id')
+    .get(async (req, res) => {
+        try {
+            const _id = req.params.id
+            const article = await Article.find({_id,status: 'public'})
+            if (!article || article.length === 0) return res.status(400).json({message: "Article not found"})
+            res.status(200).json(article)
+
+
+        } catch (err) {
+            res.status(400).json({message: 'Error fetching article', error: err})
+        }
+    })
+
+router.route('/get_byid/:id')
+    .get(async (req, res) => {
+        try {
+            const _id = req.params.id
+            const article = await Article.find({_id,status: 'public'})
+            if (!article || article.length === 0) return res.status(400).json({message: "Article not found"})
+            res.status(200).json(article)
+
+
+        } catch (err) {
+            res.status(400).json({message: 'Error fetching article', error: err})
+        }
+    })
 
 module.exports = router
