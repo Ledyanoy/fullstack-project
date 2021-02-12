@@ -4,7 +4,7 @@ import React from 'react'
 
 const Home = ()=> {
     return (
-        <p style={{fontFamily: 'Fredoka One'}}>Home</p>
+        <p style={{fontFamily: 'Fredoka One'}}></p>
     )
 }
 
