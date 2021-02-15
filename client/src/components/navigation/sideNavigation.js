@@ -37,11 +37,26 @@ const SideDrawer = (props) => {
                         </ListItemIcon>
                         <ListItemText primary='Contact'/>
                     </ListItem>
-                    <ListItem button component={RouterLink} to='/contact' onClick={() => setDrawer(false)}>
+                    <ListItem button component={RouterLink} to='/auth' onClick={() => setDrawer(false)}>
                         <ListItemIcon>
-                            <MailIcon/>
+                            <VpnKeyIcon/>
                         </ListItemIcon>
-                        <ListItemText primary='Mail'/>
+                        <ListItemText primary='Sign In'/>
+                    </ListItem>
+                    <ListItem button component={RouterLink} to='/auth' onClick={() => setDrawer(false)}>
+                        <ListItemIcon>
+                            <VpnKeyIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary='Sign Out'/>
+                    </ListItem>
+                </List>
+                <Divider/>
+                <List>
+                    <ListItem button component={RouterLink} to='/dashboard' onClick={() => setDrawer(false)}>
+                        <ListItemIcon>
+                            <DashboardIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary='Dashboard'/>
                     </ListItem>
                 </List>
             </Drawer>
