@@ -5,6 +5,7 @@ import ArticleCard from "../../utils/articleCard";
 import {useDispatch, useSelector} from 'react-redux';
 import {getArticlesTC} from '../../store/actions/article_actions'
 
+
 const initialState = {
     sortBy: "_id",
     order: "desc",
@@ -12,7 +13,7 @@ const initialState = {
     skip: 0
 }
 
-const reducer = (state, newState ) => {
+const reducer = (state, newState) => {
     return {...state, ...newState}
 }
 
@@ -21,8 +22,10 @@ const Home = () => {
     const articles = useSelector(state => state.articles)
     const dispatch = useDispatch()
 
+    const [sort, setSort] = useReducer((state, newState) => ({...state, ...newState}), initialState)
 
-    useEffect(()=> {
+
+    useEffect(() => {
         if (articles && !articles.articles) {
             dispatch(getArticlesTC(initialState))
         }
@@ -33,21 +36,20 @@ const Home = () => {
         <div className='mt-5'>
             <div>CARROUSEL</div>
             <Grid container spacing={3} className='article-card'>
-                <Grid key={1} item xs={12} sm={6} lg={3}>
-                    <ArticleCard/>
-                </Grid>
-                <Grid key={1} item xs={12} sm={6} lg={3}>
-                    <ArticleCard/>
-                </Grid>
-                <Grid key={1} item xs={12} sm={6} lg={3}>
-                    <ArticleCard/>
-                </Grid>
-                <Grid key={1} item xs={12} sm={6} lg={3}>
-                    <ArticleCard/>
-                </Grid>
-                <Grid key={1} item xs={12} sm={6} lg={3}>
-                    <ArticleCard/>
-                </Grid>
+                {articles.articles &&
+                articles.articles.map(article => {
+                    return <Grid key={article._id} item xs={12} sm={6} lg={3}>
+                        <ArticleCard article={article}/>
+                    </Grid>
+                })
+                }
+                <button onClick={() => {
+                    let skip = sort.skip + sort.limit
+                    dispatch(getArticlesTC({...sort, skip: skip}))
+                    setSort({skip:skip})
+                }}>
+                    Load More
+                </button>
             </Grid>
         </div>
     )
