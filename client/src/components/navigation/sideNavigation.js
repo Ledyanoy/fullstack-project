@@ -10,7 +10,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 
 
-const SideDrawer = (props) => {
+const  SideDrawer = (props) => {
 
     const [drawer, setDrawer] = useState(false)
 
