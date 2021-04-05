@@ -2,6 +2,7 @@ import React from 'react'
 import {Switch, Route, BrowserRouter} from 'react-router-dom'
 import GoogleFontLoader from 'react-google-font-loader'
 import Home from './components/home'
+import Auth from "./components/auth";
 
 import Header from './components/navigation/header'
 
@@ -14,6 +15,7 @@ const Routes = () => {
             <Header/>
             <MainLayout>
                 <Switch>
+                    <Route path='/auth' component={Auth}></Route>
                     <Route path='/' component={Home}></Route>
                 </Switch>
             </MainLayout>            
