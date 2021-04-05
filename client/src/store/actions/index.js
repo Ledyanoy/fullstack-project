@@ -3,6 +3,7 @@ import {
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATIONS,
+    AUTH_USER,
 } from "../types";
 
 
@@ -27,3 +28,8 @@ export const clearNotifications = () => ({
     type: CLEAR_NOTIFICATIONS,
 })
 
+//users//
+export const authUser = (user) => ({
+    type: AUTH_USER,
+    payload: user,
+});

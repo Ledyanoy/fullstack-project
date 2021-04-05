@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup';
 import {Button, TextField} from "@material-ui/core";
+import {useDispatch, useSelector} from 'react-redux';
+import {registerUser} from '../../store/actions/users_actions'
 
 const Auth = (props) => {
     const [register, setRegister] = useState(false);
+    const dispatch = useDispatch();
+    const notifications = useSelector(state => state.notifications)
 
     const formik = useFormik({
         initialValues: {email: '', password: ''},
@@ -17,9 +21,23 @@ const Auth = (props) => {
 
         }),
         onSubmit: (values, {resetForm}) => {
-            console.log(values)
+            handleSubmit(values)
         }
     });
+
+    const handleSubmit = (values) => {
+        if (register) {
+            dispatch(registerUser(values))
+        } else {
+
+        }
+    };
+
+    useEffect(()=> {
+        if(notifications && notifications.success){
+            props.history.push('/dashboard')
+        }
+    }, [notifications, props.history])
 
 
     return (
@@ -55,7 +73,7 @@ const Auth = (props) => {
                         variant='outlined'
                         color='secondary'
                         size='large'
-                        onClick={()=>setRegister(!register)}>
+                        onClick={() => setRegister(!register)}>
                         Want to {!register ? 'Register' : 'Login'}
                     </Button>
                 </form>
